@@ -9,9 +9,8 @@ export const env = cleanEnv(process.env, {
 
     ISSUER_BASE_URL: url(),
 
-    JWT_CLIENT_ID: str(),
-    JWT_CLIENT_SECRET: str(),
-    JWT_SECRET: str(),
+    client_id: str(),
+    client_secret: str(),
 
     OPEN_ID_SECRET: str(),
     OPEN_ID_CLIENT_ID: str(),
@@ -40,7 +39,6 @@ export async function getToken(authority: string, audience: string, clientId: st
 
         const jsonData = await response.json();
         if (jsonData.access_token == null) {
-            console.log(jsonData);
             return '';
         }
 
@@ -84,18 +82,19 @@ async function main() {
 
     const authority = env.ISSUER_BASE_URL;
     const audience = base_url;
-    const clientId = env.JWT_CLIENT_ID;
-    const clientSecret = env.JWT_CLIENT_SECRET;
+    const clientId = env.client_id;
+    const clientSecret = env.client_secret;
     const scope = 'create:passes';
 
     const token = await getToken(authority, audience, clientId, clientSecret, scope);
     if (token == '') {
         console.log('Failed to get token');
+        return;
     }
 
-    const url = 'http://' + base_url + '/passes';
-    const name = 'a';
-    const document = 'a';
+    const url = base_url + '/passes';
+    const name = 'User Name';
+    const document = 'OIB 13131313131';
 
     await issuePass(url, token, name, document);
 }

@@ -8,9 +8,8 @@ export const server_env = cleanEnv(process.env, {
 
     ISSUER_BASE_URL: url(),
 
-    JWT_CLIENT_ID: str(),
-    JWT_CLIENT_SECRET: str(),
-    JWT_SECRET: str(),
+    client_id: str(),
+    client_secret: str(),
 
     OPEN_ID_SECRET: str(),
     OPEN_ID_CLIENT_ID: str(),
