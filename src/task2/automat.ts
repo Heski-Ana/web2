@@ -7,7 +7,7 @@ dotenv.config();
 export const env = cleanEnv(process.env, {
     DATABASE_URL: url(),
 
-    ISSUER_BASE_URL: url(),
+    authority: url(),
 
     client_id: str(),
     client_secret: str(),
@@ -16,7 +16,7 @@ export const env = cleanEnv(process.env, {
     OPEN_ID_CLIENT_ID: str(),
 
     OPEN_ID_BASE_URL: url(),
-    JWT_BASE_URL: url(),
+    audience: url(),
     PORT: port(),
 });
 
@@ -78,9 +78,9 @@ export async function issuePass(url: string, token: string, name: string, docume
 }
 
 async function main() {
-    const base_url = env.JWT_BASE_URL;
+    const base_url = env.audience;
 
-    const authority = env.ISSUER_BASE_URL;
+    const authority = env.authority;
     const audience = base_url;
     const clientId = env.client_id;
     const clientSecret = env.client_secret;

@@ -10,7 +10,7 @@ loginRouter.use(
         secret: server_env.OPEN_ID_SECRET,
         baseURL: server_env.OPEN_ID_BASE_URL,
         clientID: server_env.OPEN_ID_CLIENT_ID,
-        issuerBaseURL: server_env.ISSUER_BASE_URL,
+        issuerBaseURL: server_env.authority,
     })
 );
 
