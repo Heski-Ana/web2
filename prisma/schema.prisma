@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AppPass {
+  id            String   @id @default(uuid())
+  user_name     String   @db.VarChar(100)
+  time_creation DateTime @default(now())
+  document_id   String   @db.VarChar(64)
+  status        Boolean
+
+  @@map("app_pass")
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Propusnice</title>
+</head>
+
+<body>
+    <p>Number of passes: <%= all_passes %>
+    </p>
+    <p>Number of active passes: <%= active_passes %>
+    </p>
+    <p>Logged in as <%= current_user.name %>
+    </p>
+    <h3>User Profile</h3>
+    <pre>
+        sid: <%- current_user.sid %>
+        nickname: <%- current_user.nickname %>
+        name: <%- current_user.name %>
+        picture: <%- current_user.picture %>
+        updated_at: <%- current_user.updated_at %>
+        email: <%- current_user.email %>
+        email_verified: <%- current_user.email_verified %>
+        sub: <%- current_user.sub %>
+    </pre>
+    <a href="/logout">Log out</a>
+    <br />
+
+    <% mapped_qrs.forEach(qr => { %>
+        <%- include("partials/qr_display.ejs", { qr: qr }) %>
+
+        <% if (qr.pass.status) { %>
+            <button onclick="cancel_pass('<%= qr.pass.id %>')">Cancel</button>
+        <% } %>
+
+        <button onclick="delete_pass('<%= qr.pass.id %>')">Delete</button>
+        <br />
+    <% }); %>
+
+    <script>
+        async function cancel_pass(pass_id) {
+            try {
+                await fetch("/existing-pass/cancel", {
+                    method: "POST",
+                    body: JSON.stringify({ pass_id: pass_id }),
+                    credentials: "include",
+                    headers: { "Content-type": "application/json" }
+                })
+                window.location.reload();
+            } catch (error) {
+                alert("Failed to cancel the pass")
+            }
+        }
+
+        async function delete_pass(pass_id) {
+            try {
+                await fetch("/existing-pass/delete", {
+                    method: "POST",
+                    body: JSON.stringify({ pass_id: pass_id }),
+                    credentials: "include",
+                    headers: { "Content-type": "application/json" }
+                })
+                window.location.reload();
+            } catch (error) {
+
+                alert("Failed to delete the pass")
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+<p>
+    <img src="<%= qr.qr %>" alt="QR Code" />
+
+    <ul>
+        <li>user_name: <%= qr.pass.user_name %></li>
+        <li>time_creation: <%= qr.pass.time_creation %></li>
+        <li>document_id: <%= qr.pass.document_id %></li>
+        <li>status: <%= qr.pass.status ? "ACTIVE" : "CANCELLED" %></li>
+    </ul>
+</p>
