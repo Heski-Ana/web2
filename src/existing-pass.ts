@@ -1,5 +1,5 @@
 import express from 'express';
-import { custom_prisma } from './prisma';
+import { custom_prisma } from './prisma.js';
 export const existingPassRouter = express.Router();
 
 existingPassRouter.post('/existing-pass/cancel', async (req, res) => {

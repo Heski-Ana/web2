@@ -3,7 +3,7 @@ import { cleanEnv, port, str, url } from 'envalid';
 
 dotenv.config();
 
-export const env = cleanEnv(process.env, {
+export const server_env = cleanEnv(process.env, {
     DATABASE_URL: url(),
 
     ISSUER_BASE_URL: url(),
@@ -18,4 +18,6 @@ export const env = cleanEnv(process.env, {
     OPEN_ID_BASE_URL: url(),
     JWT_BASE_URL: url(),
     PORT: port(),
+
+    RENDER_EXTERNAL_URL: url(),
 });

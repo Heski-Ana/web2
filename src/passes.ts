@@ -1,9 +1,9 @@
 import express from 'express';
 import { requiredScopes } from 'express-oauth2-jwt-bearer';
 import QRCode from 'qrcode';
-import type { AppPass } from './generated/prisma/client';
-import { jwtCheck } from './jwt';
-import { custom_prisma } from './prisma';
+import type { AppPass } from './generated/prisma/client.js';
+import { jwtCheck } from './jwt.js';
+import { custom_prisma } from './prisma.js';
 export const passesRouter = express.Router();
 
 function construct_pass_data(db_pass: AppPass) {

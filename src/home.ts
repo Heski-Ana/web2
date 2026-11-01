@@ -1,6 +1,6 @@
 import express from 'express';
 import QRCode from 'qrcode';
-import { custom_prisma } from './prisma';
+import { custom_prisma } from './prisma.js';
 
 export const homeRouter = express.Router();
 
